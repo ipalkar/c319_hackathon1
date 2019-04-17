@@ -8,8 +8,12 @@ class Players {
     }
 
     healthUp(num) {
-        if(this.health <= 12){
-            this.health += num;
+        if(this.inTokyo = false){
+            if(this.health < 10){
+                this.health += num;
+            }
+        }else{
+            console.log('you cannot heal in tokyo');
         }
         return this.health;
     }
