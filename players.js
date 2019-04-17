@@ -8,7 +8,9 @@ class Players {
     }
 
     healthUp(num) {
-        this.health += num;
+        if(this.health <= 12){
+            this.health += num;
+        }
         return this.health;
     }
 
@@ -32,5 +34,6 @@ class Players {
         this.inTokyo = false;
         return this.inTokyo;
     }
+
 }
 
