@@ -1,0 +1,6 @@
+class Dice{
+    constructor(){
+        
+    }
+
+}
