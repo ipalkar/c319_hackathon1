@@ -8,7 +8,7 @@ class GameKOT {
             currentPlayer: 0,
             numberOfPlayers: numbPlayers,
             playerInTokyo: 1,
-            // playersNotInTokyo: [],
+            playersNotInTokyo: [],
             currentDiceValue: [],
             rollNumber: 1,
             diceArray: []
@@ -39,15 +39,24 @@ class GameKOT {
         //     die.diceVal(this.gameData.diceArray[diceIndex]);
         // }
     }
-    checkInTokyo() {
-        var currentPlayer = this.playerArray[this.gameData.currentPlayer];
-        if (currentPlayer.inTokyo === false) {
-            //They can attack players in tokyo
-            //
+    checkInTokyo(player) {
+        var result = this.player.inTokyoCheck();
+        if (result === true){
+            dealDamage(this.gameData.playersNotInTokyo);
+        }else {
+            dealDamage(this.gameData.playerInTokyo);
         }
-    }
-    dealDamage(){
 
+        // var currentPlayer = this.playerArray[this.gameData.currentPlayer];
+        // if (currentPlayer.inTokyo === false) {
+        //     //They can attack players in tokyo
+        //     //
+        // }
+    }
+    dealDamage(array){
+        for (var damArrIndex = 0; damArrIndex < array.length; damArrIndex++){
+            
+        }
     }
     changehp(healthNum, tokyoCheck){
 
