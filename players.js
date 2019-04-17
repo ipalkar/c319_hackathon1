@@ -8,17 +8,17 @@ class Players {
     }
 
     healthUp(num) {
-        this.health + num;
+        this.health += num;
         return this.health;
     }
 
     healthDown(num) {
-        this.health - num;
+        this.health -= num;
         return this.health;
     }
 
     victoryPointsUp(num) {
-        this.victoryPoints + num;
+        this.victoryPoints += num;
         return this.victoryPoints;
     }
 
