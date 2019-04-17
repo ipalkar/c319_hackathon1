@@ -55,7 +55,7 @@ class GameKOT {
     }
     dealDamage(array){
         for (var damArrIndex = 0; damArrIndex < array.length; damArrIndex++){
-            
+
         }
     }
     changehp(healthNum, tokyoCheck){
