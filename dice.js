@@ -22,7 +22,11 @@ class Dice{
         this.diceValue=array[0];
         return this.diceValue;
 
+
+
+
     }
+   
 
     diceVal(){
         switch(this.diceValue){
