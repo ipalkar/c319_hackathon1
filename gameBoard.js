@@ -11,7 +11,7 @@ class GameKOT {
             // playersNotInTokyo: [],
             currentDiceValue: [],
             rollNumber: 1,
-            diceArray: [],
+            diceArray: []
 
         }
     }
@@ -49,7 +49,7 @@ class GameKOT {
     dealDamage(){
 
     }
-    changehp(){
+    changehp(healthNum, tokyoCheck){
 
     }
     changevp(){
