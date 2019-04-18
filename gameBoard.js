@@ -16,9 +16,16 @@ class GameKOT {
         }
     }
     generateDice(){
+
         this.gameData.diceArray = [];
-        var die = new Dice();
-        this.gameData.diceArray.push(die);
+        for (var i = 0; i < 6; i++){
+            var dice = new Dice();
+            dice.rollDice();
+
+            this.gameData.diceArray.push(dice);
+        }
+
+        //die.rollDice(this.gameData.diceArray);
     }
     reRollDice(){
 
@@ -35,16 +42,39 @@ class GameKOT {
         this.playerArray.push(player4);
     }
     readDice(){
-        // for (var diceIndex = 0; diceIndex < this.gameData.diceArray.length; diceIndex++){
-        //     die.diceVal(this.gameData.diceArray[diceIndex]);
+        //this.gameData.diceArray
+
+        // switch(this.dice){
+        //     case 1:
+        //         $(this).css('background-image','dice1.png');
+        //         break;
+        //     case 2:
+        //         $(this).css('background-image','dice1.png');
+        //         break;
+        //     case 3:
+        //         $(this).css('background-image','dice1.png')
+        //         break;
+        //     case 4:
+        //         $(this).css('background-image','dice1.png')
+        //         break;
+        //     case 5:
+        //         $(this).css('background-image','dice1.png')
+        //         break;
+        //
         // }
+        for (var diceIndex = 0; diceIndex < this.gameData.diceArray.length; diceIndex++){
+            // die.diceVal(this.gameData.diceArray[diceIndex]);
+            var diceValue = this.gameData.diceArray[diceIndex];
+            var currentPlayer = this.gameData.currentPlayer;
+            //if (currentPlayer.inTokyo === )
+        }
     }
-    checkInTokyo(player) {
+    checkInTokyo(player, dicevalue) {
         var result = this.player.inTokyoCheck();
         if (result === true){
-            dealDamage(this.gameData.playersNotInTokyo);
+            dealDamage(this.gameData.playersNotInTokyo, dicevalue);
         }else {
-            dealDamage(this.gameData.playerInTokyo);
+            dealDamage(this.gameData.playerInTokyo, dicevalue);
         }
 
         // var currentPlayer = this.playerArray[this.gameData.currentPlayer];
@@ -53,9 +83,9 @@ class GameKOT {
         //     //
         // }
     }
-    dealDamage(array){
+    dealDamage(array, dieValue){
         for (var damArrIndex = 0; damArrIndex < array.length; damArrIndex++){
-
+            changeHp(array[damArrIndex])
         }
     }
     changehp(healthNum, tokyoCheck){

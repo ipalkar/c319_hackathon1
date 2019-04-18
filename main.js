@@ -6,5 +6,4 @@ function initializeApp() {
     kot = new GameKOT();
     kot.generateChars();
     kot.generateDice();
-
 }
