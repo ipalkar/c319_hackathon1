@@ -5,6 +5,7 @@ class Players {
         this.health = 10;
         this.victoryPoints = 0;
         this.inTokyo = false;
+        this.takenDamge = false;
     }
 
     healthUp(num) {
@@ -32,6 +33,7 @@ class Players {
     healthDown(num) {
         this.health = this.health - num;
         this.renderPoints('hp');
+        this.takenDamge = true;
         return this.health;
     }
 
