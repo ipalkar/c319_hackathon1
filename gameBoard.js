@@ -3,6 +3,9 @@
 class GameKOT {
     constructor(numbPlayers) {
         this.playerArray = [];
+        this.useDice = this.useDice.bind(this)
+        this.dice = new Dice( this.useDice );
+
 
         this.gameData = {
             currentPlayer: 0,
@@ -15,21 +18,15 @@ class GameKOT {
 
         }
     }
-    generateDice(){
 
-        this.gameData.diceArray = [];
-        for (var i = 0; i < 6; i++){
-            var dice = new Dice();
-            dice.rollDice();
-
-            this.gameData.diceArray.push(dice);
-        }
-
-        //die.rollDice(this.gameData.diceArray);
-    }
     reRollDice(){
 
     }
+    useDice( diceValues){
+        console.log('got dice values of ', diceValues)
+
+    }
+
 
     generateChars(){
         var player1 = new Players(1, 'Cyber Kitty');
