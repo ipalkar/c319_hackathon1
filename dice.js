@@ -1,42 +1,38 @@
+var diceArray = [1,2,3,4,5];
 class Dice{
     constructor(){
-        this.array = [1,2,3,4,5];
-        this.dice1=null;
-        this.diceClass=null;
+
+        this.dice=null;
+        this.diceDiv = $('<div></div>', {class: "dice"});
+        this.diceImage = null;
+        $('.diceBox').append(this.diceDiv);
+        this.rollDice= this.rollDice.bind(this);
 
     }
-    shuffle(array){
-        var currentIndex = array.length, temporaryValue, randomIndex;
+    rollDice(){
 
-    while (0 !== currentIndex) {
+        this.dice=Math.floor(Math.random() * 5) + 1;
 
-        randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex -= 1;
-        temporaryValue = array[currentIndex];
-        array[currentIndex] = array[randomIndex];
-        array[randomIndex] = temporaryValue;
-    }
-    
-    this.dice1=array[0];
-    return this.dice1;
-    
-    }
-
-    diceVal(){
-        switch(this.dice1){
+        switch(this.dice){
             case 1:
-                this.diceClass=1;
+                this.diceImage = 'url("images/dice1.png")';
+                break;
             case 2:
-                this.diceClass=2;
+                this.diceImage = 'url("images/dice2.png")';
+                break;
             case 3:
-                this.diceClass=3;
+                this.diceImage = 'url("images/dice3.png")';
+                break;
             case 4:
-                this.diceClass="heart";
+                this.diceImage = 'url("images/dice4.png")';
+                break;
             case 5:
-                this.diceClass="attack";
-
+                this.diceImage = 'url("images/dice5.png")';
+                break;
         }
+        $(this.diceDiv).css('background-image', this.diceImage);
+
+
     }
-   
 
 }
