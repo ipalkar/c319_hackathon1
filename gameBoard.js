@@ -11,6 +11,12 @@ class GameKOT {
             currentPlayer: 0,
             numberOfPlayers: numbPlayers
         }
+        // this.changePlayerInTokyo = this.changePlayerInTokyo.bind(this);
+        // this.stayInTokyo = this.stayInTokyo.bind(this);
+        // this.nextPlayer = this.nextPlayer.bind(this);
+        $('.leave').click(this.changePlayerInTokyo);
+        $('.stay').click(this.stayInTokyo);
+        $('.endTurn').click(this.nextPlayer);
     }
 
     useDice( diceArray){
@@ -114,16 +120,22 @@ class GameKOT {
         console.log(currentPlayer, amount, 'vp');
     }
     nextPlayer(){
+        debugger;
         if (this.gameData.currentPlayer < 3){
             this.gameData.currentPlayer++;
         } else {
             this.gameData.currentPlayer = 0;
         }
+        console.log('next player');
     }
     changePlayerInTokyo(){
         var currentPlayer = this.playerArray[this.gameData.currentPlayer];
         var playerInTokyo = this.playerArray[this.playerinTokyo];
         playerInTokyo.leaveTokyo();
         currentPlayer.goIntoTokyo();
+        console.log('change player in tokyo');
+    }
+    stayInTokyo(){
+        console.log('stay in tokyo');
     }
 }
