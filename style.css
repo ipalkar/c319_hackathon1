@@ -67,7 +67,7 @@ html, body {
     background-image: url("images/char1.png");
 }
 .character-2 {
-    background-image: url("images/char5.png");
+    background-image: url("images/char2.png");
 }
 .character-3 {
     background-image: url("images/char3.png");
@@ -92,7 +92,6 @@ html, body {
 }
 .stats li:nth-child(odd) {
     background-color: rgba(19, 56, 101, .65); /* #333;*/
-
 }
 .diceArea {
     position: absolute;
@@ -113,23 +112,25 @@ html, body {
     height: 64px;
     display: inline-block;
 }
-.dice-1 {
-    background-image: url("images/dice1.png");
+.dice0 {
+    margin-right:1rem;
 }
-.dice-2 {
-    background-image: url("images/dice2.png");
+.dice1 {
+    margin-right:1rem;
 }
-.dice-3 {
-    background-image: url("images/dice3.png");
+.dice2 {
+    margin-right:1rem;
 }
-.dice-4 {
-    background-image: url("images/dice4.png");
+.dice3 {
+    margin-right:1rem;
 }
-.dice-5 {
-    background-image: url("images/dice5.png");
+.dice4 {
+    margin-right:1rem;
 }
-.dice-6 {
-    background-image: url("images/dice6.png");
+.rollBox, .rollBox button {
+    display: inline-block;
+    background-color: rgba(23, 90, 133, .65);
+    color: #fff;
 }
 .rollButton {
     display: inline-block;
