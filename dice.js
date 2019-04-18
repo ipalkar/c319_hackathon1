@@ -11,6 +11,7 @@ class Dice{
         this.rollDice= this.rollDice.bind(this);
         this.disableDice = this.disableDice.bind(this);
         this.sendValues = this.sendValues.bind(this);
+        this.resetDice = this.resetDice.bind(this);
 
         $('.rollButton').click(this.rollDice);
 
@@ -32,8 +33,10 @@ class Dice{
         var diceWords = [1,2,3,'A','H'];
 
 
+
         for( var i = 0; i < 6; i++){
             if(!this.selectedDice[i]){
+                this.diceValues.push( diceWords[i]);
                 continue;
             }
 
@@ -46,10 +49,12 @@ class Dice{
         }
 
         this.currentRoll--;
-        //console.log(this.currentRoll);
+        $('.rollsRemaining').empty().append(this.currentRoll);
         if(!this.currentRoll){
             document.getElementsByClassName('rollButton')[0].disabled=true;
+            $('.rollButton').addClass('selectedDie');
             this.cantBeSelected = true;
+            $('.endTurn').addClass('borderHighlight');
         }
 
     }
@@ -64,7 +69,7 @@ class Dice{
             var dieDom = $("<div>",{
                     class: 'dice dice'+i,
                     css: {
-                        'background-image': 'url("images/Q.png")'
+                        'background-image': 'url("images/dice6.png")'
                     },
                     'data-index': i
                 }
@@ -81,6 +86,7 @@ class Dice{
         var currentIndex = parseInt($(event.currentTarget).attr('data-index'));
         this.selectedDice[ currentIndex ] = !this.selectedDice[ currentIndex ];
         $(event.currentTarget).toggleClass('selectedDie');
+
     }
 
     resetDice(){
@@ -89,6 +95,11 @@ class Dice{
         $('.dice').removeClass('selectedDie');
         this.cantBeSelected = true;
         document.getElementsByClassName('rollButton')[0].disabled=false;
+        $('.rollsRemaining').empty().append(3);
+        $('.rollButton').removeClass('selectedDie');
+        $('.endTurn').removeClass('borderHighlight');
+
+
     }
 
 }

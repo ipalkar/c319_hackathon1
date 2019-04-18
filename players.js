@@ -6,6 +6,7 @@ class Players {
         this.victoryPoints = 0;
         this.inTokyo = false;
         this.takenDamge = false;
+        this.timeInTokyo = 0;
     }
 
     healthUp(num) {
@@ -16,18 +17,6 @@ class Players {
         }
         this.renderPoints('hp');
         return this.health;
-        //console.log(num, 'health HIt');
-        // if(this.inTokyo = false){
-        //     if(this.health < 100){
-        //         this.health = this.health + num;
-        //         return this.health;
-        //     } else {
-        //         this.health = this.health + num;
-        //         return this.health;
-        //         //console.log('you cannot heal in tokyo');
-        //     }
-        // }
-        // return this.health;
     }
 
     healthDown(num) {
@@ -38,7 +27,7 @@ class Players {
     }
 
     victoryPointsUp(num) {
-        this.victoryPoints += num;
+        this.victoryPoints = this.victoryPoints + num;
         this.renderPoints('vp');
         return this.victoryPoints;
     }
@@ -47,11 +36,13 @@ class Players {
         this.inTokyo = true;
         this.victoryPointsUp(1);
         this.renderCenterImage();
+        this.timeInTokyo = this.timeInTokyo + 1;
         return this.inTokyo;
     }
 
     leaveTokyo() {
         this.inTokyo = false;
+        this.timeInTokyo = 0;
         return this.inTokyo;
     }
     renderPoints(type) {
@@ -71,4 +62,3 @@ class Players {
 
     }
 }
-
