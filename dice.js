@@ -29,23 +29,22 @@ class Dice{
             this.cantBeSelected = false;
         }
         var diceValues = ['dice1.png','dice2.png','dice3.png','dice4.png', 'dice5.png'];
-        this.diceValues = [];
+
         var diceWords = [1,2,3,'A','H'];
 
 
-
         for( var i = 0; i < 6; i++){
-            if(!this.selectedDice[i]){
-                this.diceValues.push( diceWords[i]);
-                continue;
+            if(this.selectedDice[i]){
+                var randomIndex = Math.floor(diceValues.length * Math.random());
+                var image = 'url(images/'+ diceValues[randomIndex]+')';
+                $(this.domElements[i].css({
+                    'background-image': image
+                }));
+                this.diceValues[i]= diceWords[randomIndex];
             }
 
-            var randomIndex = Math.floor(diceValues.length * Math.random());
-            var image = 'url(images/'+ diceValues[randomIndex]+')';
-            $(this.domElements[i].css({
-                'background-image': image
-            }));
-            this.diceValues.push( diceWords[randomIndex]);
+
+
         }
 
         this.currentRoll--;
@@ -60,7 +59,7 @@ class Dice{
     }
 
     sendValues(){
-        this.diceSend( this.diceValues );
+        this.diceSend(this.diceValues);
 
     }
 
@@ -91,7 +90,7 @@ class Dice{
 
     resetDice(){
         this.selectedDice = [true,true,true,true,true,true];
-        $('.dice').css('background-image', 'url("images/Q.png")');
+        $('.dice').css('background-image', 'url("images/dice6.png")');
         $('.dice').removeClass('selectedDie');
         this.cantBeSelected = true;
         document.getElementsByClassName('rollButton')[0].disabled=false;
