@@ -152,8 +152,6 @@ class GameKOT {
             currentPlayer.goIntoTokyo();
         }
         $('.leave').removeClass('borderHighlight');
-
-
     }
 
 }
