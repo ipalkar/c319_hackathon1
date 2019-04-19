@@ -29,6 +29,8 @@ html, body {
     text-align: center;
     font-size: xx-large;
     color: #fff;
+    text-shadow: 3px 3px black;
+    font-weight: bolder;
 }
 .playerBox {
     padding-top: 20px;
@@ -90,6 +92,7 @@ html, body {
     justify-content: center;
     text-align: center;
     color: #fff;
+    text-shadow: 2px 2px black;
 }
 .stats li:nth-child(odd) {
     background-color: rgba(19, 56, 101, .65);
@@ -133,6 +136,10 @@ html, body {
 }
 .rolls {
     display: inline-block;
+    color: #fff;
+    text-shadow: 2px 2px black;
+    font-size: large;
+    font-weight: bold;
 }
 
 .borderHighlight{

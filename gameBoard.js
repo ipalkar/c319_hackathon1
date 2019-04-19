@@ -44,6 +44,7 @@ class GameKOT {
         this.playerArray[0].goIntoTokyo();
     }
     readDice(value){
+        debugger;
         var one = value['1'];
         var two = value['2'];
         var three = value['3'];
@@ -114,6 +115,9 @@ class GameKOT {
     increaseVP(amount){
         var currentPlayer = this.playerArray[this.gameData.currentPlayer];
         currentPlayer.victoryPointsUp(amount);
+        if (currentPlayer.victoryPoints >= 20){
+            alert('You are the King of Tokyo!');
+        }
         console.log(currentPlayer, amount, 'vp');
     }
     nextPlayer(){
@@ -130,7 +134,7 @@ class GameKOT {
         if (playerInTokyo.timeInTokyo > 0){
             playerInTokyo.timeInTokyo = playerInTokyo.timeInTokyo + 1;
         }
-        if (playerInTokyo.timeInTokyo === 4){
+        if (playerInTokyo.timeInTokyo === 5){
             this.increaseVP(2);
             alert('1 round completed and increased vp by 2');
         }
