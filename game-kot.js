@@ -5,7 +5,7 @@ class GameKOT {
         this.playerArray = [];
         this.useDice = this.useDice.bind(this);
         this.dice = new Dice( this.useDice );
-        this.playerinTokyo = 0;
+        this.playerinTokyoIndex = 0;
         this.gameData = {
             currentPlayer: 0,
             numberOfPlayers: numbPlayers
@@ -86,7 +86,8 @@ class GameKOT {
     }
     dealDamage(value){
         var currentPlayer = this.playerArray[this.gameData.currentPlayer];
-        var playerInTokyo = this.playerArray[this.playerinTokyo];
+        var playerInTokyo = this.playerArray[this.playerinTokyoIndex];
+
         if (currentPlayer.inTokyo === true){
             for (var i = 0; i < this.playerArray.length; i++){
                 if (this.playerArray[i].inTokyo === false){
@@ -96,6 +97,8 @@ class GameKOT {
         } else {
             playerInTokyo.healthDown(value);
             $('.leave').addClass('border-high-light');
+            $('.game-circle').addClass('shake-horizontal');
+            setTimeout(function(){$('.game-circle').removeClass('shake-horizontal');}, 2000);
         }
     }
     healing(value){
@@ -107,14 +110,14 @@ class GameKOT {
     increaseVP(amount){
         var currentPlayer = this.playerArray[this.gameData.currentPlayer];
         currentPlayer.victoryPointsUp(amount);
-        if (currentPlayer.victoryPoints >= 20){
+        if (currentPlayer.victoryPoints >= 5){
             $('.game-circle span').text(currentPlayer.name + ' Wins The game and');
         }
     }
     nextPlayer(){
         $('.character-'+(this.gameData.currentPlayer+1)).removeClass('border-high-light');
         var currentPlayer = this.playerArray[this.gameData.currentPlayer];
-        var playerInTokyo = this.playerArray[this.playerinTokyo];
+        var playerInTokyo = this.playerArray[this.playerinTokyoIndex];
         if (this.gameData.currentPlayer < 3){
             this.gameData.currentPlayer++;
         } else {
@@ -135,12 +138,12 @@ class GameKOT {
     }
     changePlayerInTokyo(){
         var currentPlayer = this.playerArray[this.gameData.currentPlayer];
-        var playerInTokyo = this.playerArray[this.playerinTokyo];
+        var playerInTokyo = this.playerArray[this.playerinTokyoIndex];
 
         if (playerInTokyo.takenDamge === true) {
             playerInTokyo.leaveTokyo();
             currentPlayer.goIntoTokyo();
-            this.playerinTokyo = currentPlayer;
+            this.playerinTokyoIndex = this.playerArray.indexOf(currentPlayer);
         }
         $('.leave').removeClass('border-high-light');
     }

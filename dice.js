@@ -19,11 +19,12 @@ class Dice{
 
         $('.end-turn').click(this.resetDice);
 
-        $('.accept-roll').click(this.sendValues);
+
 
     }
 
     rollDice(){
+        $('.accept-roll').off('click', this.sendValues);
         if (this.currentRoll < 3 || this.currentRoll > 0){
             this.cantBeSelected = false;
         }
@@ -54,7 +55,7 @@ class Dice{
             this.cantBeSelected = true;
             $('.end-turn').addClass('border-high-light');
         }
-
+        $('.accept-roll').one('click', this.sendValues);
     }
 
     sendValues(){
