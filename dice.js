@@ -13,14 +13,13 @@ class Dice{
         this.sendValues = this.sendValues.bind(this);
         this.resetDice = this.resetDice.bind(this);
 
-        $('.rollButton').click(this.rollDice);
+        $('.roll-button').click(this.rollDice);
 
         $('.dice').click(this.disableDice);
 
+        $('.end-turn').click(this.resetDice);
 
-        $('.endTurn').click(this.resetDice);
-
-        $('.acceptRoll').click(this.sendValues);
+        $('.accept-roll').click(this.sendValues);
 
     }
 
@@ -48,12 +47,12 @@ class Dice{
         }
 
         this.currentRoll--;
-        $('.rollsRemaining').empty().append(this.currentRoll);
+        $('.rolls-remaining').empty().append(this.currentRoll);
         if(!this.currentRoll){
-            document.getElementsByClassName('rollButton')[0].disabled=true;
-            $('.rollButton').addClass('selectedDie');
+            document.getElementsByClassName('roll-button')[0].disabled=true;
+            $('.roll-button').addClass('selected-die');
             this.cantBeSelected = true;
-            $('.endTurn').addClass('borderHighlight');
+            $('.end-turn').addClass('border-high-light');
         }
 
     }
@@ -75,7 +74,7 @@ class Dice{
             );
             this.domElements.push(dieDom);
         }
-        $('.diceBox').append(this.domElements);
+        $('.dice-box').append(this.domElements);
     }
 
     disableDice(event) {
@@ -84,19 +83,19 @@ class Dice{
         }
         var currentIndex = parseInt($(event.currentTarget).attr('data-index'));
         this.selectedDice[ currentIndex ] = !this.selectedDice[ currentIndex ];
-        $(event.currentTarget).toggleClass('selectedDie');
+        $(event.currentTarget).toggleClass('selected-die');
 
     }
 
     resetDice(){
         this.selectedDice = [true,true,true,true,true,true];
         $('.dice').css('background-image', 'url("images/dice6.png")');
-        $('.dice').removeClass('selectedDie');
+        $('.dice').removeClass('selected-die');
         this.cantBeSelected = true;
-        document.getElementsByClassName('rollButton')[0].disabled=false;
-        $('.rollsRemaining').empty().append(3);
-        $('.rollButton').removeClass('selectedDie');
-        $('.endTurn').removeClass('borderHighlight');
+        document.getElementsByClassName('roll-button')[0].disabled=false;
+        $('.rolls-remaining').empty().append(3);
+        $('.roll-button').removeClass('selected-die');
+        $('.end-turn').removeClass('border-high-light');
 
 
     }

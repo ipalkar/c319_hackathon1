@@ -36,7 +36,7 @@ class Players {
         this.inTokyo = true;
         this.victoryPointsUp(1);
         this.renderCenterImage();
-        this.timeInTokyo = this.timeInTokyo + 1;
+        this.timeInTokyo;// = this.timeInTokyo + 1;
         return this.inTokyo;
     }
 
@@ -57,8 +57,8 @@ class Players {
     }
     renderCenterImage(){
         var imageValue = 'url(images/char' + this.playerSpot + '.png';
-        $('.gameCircle').css('background-image', imageValue);
-        $('.gameCircle span').text(this.name);
+        $('.game-circle').css('background-image', imageValue);
+        $('.game-circle span').text(this.name);
 
     }
 }
