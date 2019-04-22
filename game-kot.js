@@ -5,17 +5,16 @@ class GameKOT {
         this.playerArray = [];
         this.useDice = this.useDice.bind(this);
         this.dice = new Dice( this.useDice );
-        this.playerinTokyo = 0;
+        this.playerinTokyoIndex = 0;
         this.gameData = {
             currentPlayer: 0,
             numberOfPlayers: numbPlayers
         };
-        $('.character-'+(this.gameData.currentPlayer+1)).addClass('borderHighlight');
+        $('.character-'+(this.gameData.currentPlayer+1)).addClass('border-high-light');
         this.changePlayerInTokyo = this.changePlayerInTokyo.bind(this);
         this.nextPlayer = this.nextPlayer.bind(this);
         $('.leave').click(this.changePlayerInTokyo);
-        $('.stay').click(this.stayInTokyo);
-        $('.endTurn').click(this.nextPlayer);
+        $('.end-turn').click(this.nextPlayer);
     }
 
     useDice( diceArray){
@@ -44,7 +43,6 @@ class GameKOT {
         this.playerArray[0].goIntoTokyo();
     }
     readDice(value){
-        debugger;
         var one = value['1'];
         var two = value['2'];
         var three = value['3'];
@@ -88,72 +86,66 @@ class GameKOT {
     }
     dealDamage(value){
         var currentPlayer = this.playerArray[this.gameData.currentPlayer];
-        var playerInTokyo = this.playerArray[this.playerinTokyo];
-        console.log(currentPlayer);
+        var playerInTokyo = this.playerArray[this.playerinTokyoIndex];
+
         if (currentPlayer.inTokyo === true){
             for (var i = 0; i < this.playerArray.length; i++){
                 if (this.playerArray[i].inTokyo === false){
                     this.playerArray[i].healthDown(value);
                 }
-
             }
         } else {
             playerInTokyo.healthDown(value);
-            $('.leave').addClass('borderHighlight');
+            $('.leave').addClass('border-high-light');
+            $('.game-circle').addClass('shake-horizontal');
+            setTimeout(function(){$('.game-circle').removeClass('shake-horizontal');}, 2000);
         }
-
-        console.log(currentPlayer, value, 'deal damage');
     }
     healing(value){
         var currentPlayer = this.playerArray[this.gameData.currentPlayer];
         if (currentPlayer.inTokyo === false){
             currentPlayer.healthUp(value);
         }
-        console.log(currentPlayer, value, 'increase hp');
-
     }
     increaseVP(amount){
         var currentPlayer = this.playerArray[this.gameData.currentPlayer];
         currentPlayer.victoryPointsUp(amount);
-        if (currentPlayer.victoryPoints >= 20){
-            alert('You are the King of Tokyo!');
+        if (currentPlayer.victoryPoints >= 5){
+            $('.game-circle span').text(currentPlayer.name + ' Wins The game and');
         }
-        console.log(currentPlayer, amount, 'vp');
     }
     nextPlayer(){
-        $('.character-'+(this.gameData.currentPlayer+1)).removeClass('borderHighlight');
+        $('.character-'+(this.gameData.currentPlayer+1)).removeClass('border-high-light');
         var currentPlayer = this.playerArray[this.gameData.currentPlayer];
-        var playerInTokyo = this.playerArray[this.playerinTokyo];
+        var playerInTokyo = this.playerArray[this.playerinTokyoIndex];
         if (this.gameData.currentPlayer < 3){
             this.gameData.currentPlayer++;
         } else {
             this.gameData.currentPlayer = 0;
         }
         this.dice.currentRoll = 3;
-        $('.character-'+(this.gameData.currentPlayer+1)).addClass('borderHighlight');
+        $('.character-'+(this.gameData.currentPlayer+1)).addClass('border-high-light');
         if (playerInTokyo.timeInTokyo > 0){
             playerInTokyo.timeInTokyo = playerInTokyo.timeInTokyo + 1;
         }
         if (playerInTokyo.timeInTokyo === 5){
             this.increaseVP(2);
-            alert('1 round completed and increased vp by 2');
         }
         for (var i = 0; i < this.playerArray.length; i++){
           this.playerArray[i].takenDamge = false;
         }
-        $('.leave').removeClass('borderHighlight');
+        $('.leave').removeClass('border-high-light');
     }
     changePlayerInTokyo(){
         var currentPlayer = this.playerArray[this.gameData.currentPlayer];
-        var playerInTokyo = this.playerArray[this.playerinTokyo];
+        var playerInTokyo = this.playerArray[this.playerinTokyoIndex];
 
         if (playerInTokyo.takenDamge === true) {
             playerInTokyo.leaveTokyo();
             currentPlayer.goIntoTokyo();
+            this.playerinTokyoIndex = this.playerArray.indexOf(currentPlayer);
         }
-        $('.leave').removeClass('borderHighlight');
-
-
+        $('.leave').removeClass('border-high-light');
     }
 
 }

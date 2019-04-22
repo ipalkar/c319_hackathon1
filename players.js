@@ -10,19 +10,25 @@ class Players {
     }
 
     healthUp(num) {
-
         this.health = this.health + num;
         if (this.health > 10){
             this.health = 10;
+            var test = this.playerSpot;
+            $('.character-' + test).addClass('heartbeat');
+            setTimeout(function(){ $('.character-' + test).removeClass('heartbeat'); }, 2000);
         }
         this.renderPoints('hp');
         return this.health;
     }
 
     healthDown(num) {
+
         this.health = this.health - num;
         this.renderPoints('hp');
         this.takenDamge = true;
+        var test = this.playerSpot;
+        $('.character-' + test).addClass('shake-horizontal');
+        setTimeout(function(){ $('.character-' + test).removeClass('shake-horizontal'); }, 2000);
         return this.health;
     }
 
@@ -36,7 +42,7 @@ class Players {
         this.inTokyo = true;
         this.victoryPointsUp(1);
         this.renderCenterImage();
-        this.timeInTokyo = this.timeInTokyo + 1;
+        this.timeInTokyo = 1;
         return this.inTokyo;
     }
 
@@ -57,8 +63,8 @@ class Players {
     }
     renderCenterImage(){
         var imageValue = 'url(images/char' + this.playerSpot + '.png';
-        $('.gameCircle').css('background-image', imageValue);
-        $('.gameCircle span').text(this.name);
+        $('.game-circle').css('background-image', imageValue);
+        $('.game-circle span').text(this.name);
 
     }
 }
